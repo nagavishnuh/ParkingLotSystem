@@ -1,7 +1,6 @@
 package bike.paathshaala;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
@@ -74,91 +73,5 @@ public class ParkingLotTest {
         Boolean isParkingLotFull = parkingLot.checkIfParkingLotIsFull();
 
         assertFalse(isParkingLotFull);
-    }
-
-    @Test
-    void notifyOwnerWhenParkingLotIsFull() {
-        ParkingLot parkingLot = new ParkingLot(1);
-        Owner owner = new Owner();
-        owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot(0);
-
-        boolean isParked = parkingLot.park(new Vehicle());
-
-        assertTrue(isParked);
-        assertTrue(owner.checkIfParkingLotIsFull());
-
-    }
-
-    @Test
-    void notNotifyOwnerWhenParkingLotIsFree() {
-        ParkingLot parkingLot = new ParkingLot(2);
-        Owner owner = new Owner();
-        owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot(0);
-
-        boolean isParked = parkingLot.park(new Vehicle());
-
-        assertTrue(isParked);
-        assertFalse(owner.checkIfParkingLotIsFull());
-    }
-
-    @Test
-    void notifySecurityPersonnalWhenLotIsFull() {
-        ParkingLot parkingLot = new ParkingLot(1);
-        SecurityPersonnal securityPersonnal = new SecurityPersonnal();
-        securityPersonnal.setParkingLot(parkingLot);
-        securityPersonnal.subscribeToAParkingLot();
-
-        boolean isParked = parkingLot.park(new Vehicle());
-
-        assertTrue(isParked);
-        assertTrue(securityPersonnal.checkIfParkingLotIsFull());
-    }
-
-    @Test
-    void notNotifySecurityPersonnalWhenLotIsFree() {
-        ParkingLot parkingLot = new ParkingLot(2);
-        SecurityPersonnal securityPersonnal = new SecurityPersonnal();
-        securityPersonnal.setParkingLot(parkingLot);
-        securityPersonnal.subscribeToAParkingLot();
-
-        boolean isParked = parkingLot.park(new Vehicle());
-
-        assertTrue(isParked);
-        assertFalse(securityPersonnal.checkIfParkingLotIsFull());
-    }
-
-    @Test
-    void notifyOwnerWhenSlotsAreBackAvailable() {
-        ParkingLot parkingLot = new ParkingLot(1);
-        Owner owner = new Owner();
-        owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot(0);
-        Vehicle myCar = new Vehicle();
-
-        boolean isParked = parkingLot.park(myCar);
-        boolean notifiedOwnerWhenLotIsFull = owner.checkIfParkingLotIsFull();
-        boolean isUnParked = parkingLot.unPark(myCar);
-        boolean notifiedOwnerWhenLotIsBackAvailable = owner.checkIfParkingLotIsAvailable();
-
-        assertTrue(isParked);
-        assertTrue(notifiedOwnerWhenLotIsFull);
-        assertTrue(isUnParked);
-        assertTrue(notifiedOwnerWhenLotIsBackAvailable);
-    }
-
-    @Test
-    void shouldReturnTrueAfterOwnerInstructAttendantToParkTheCar() {
-        ParkingLot parkingLot1 = new ParkingLot(2);
-        ParkingLot parkingLot2 = new ParkingLot(3);
-        Owner owner = new Owner();
-        owner.setParkingLot(parkingLot1);
-        owner.setParkingLot(parkingLot2);
-        Vehicle myCar = new Vehicle();
-
-        Boolean didAttendantParkTheCar = owner.instructAttendantToPark(myCar);
-
-        assertTrue(didAttendantParkTheCar);
     }
 }

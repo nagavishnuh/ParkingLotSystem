@@ -41,4 +41,8 @@ public class Owner implements Observer{
     public Boolean instructAttendantToPark(Vehicle myCar) {
         return parkingLotAttendant.parkTheCar(myCar, parkingLot);
     }
+
+    public Boolean instructAttendantToUnPark(Vehicle myCar) {
+        return parkingLotAttendant.unParkTheCar(myCar, parkingLot);
+    }
 }

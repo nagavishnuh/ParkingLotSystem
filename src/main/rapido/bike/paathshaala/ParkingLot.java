@@ -70,4 +70,8 @@ public class ParkingLot {
         }
         return false;
     }
+
+    public int getAvailableSlot() {
+        return parkingSlotsAvailable;
+    }
 }
