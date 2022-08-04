@@ -19,7 +19,7 @@ public class ParkingLot {
     }
 
     public Boolean park(Vehicle vehicle){
-        if(parkingSlotsAvailable >0) {
+        if(hasSlotToPark() && isCarNotParkedAlready(vehicle)) {
             parkingSlotsAvailable -= 1;
             parkingSlots.add(vehicle);
             if(parkingSlotsAvailable==0){
@@ -29,6 +29,14 @@ public class ParkingLot {
         }
 
         return false;
+    }
+
+    private boolean hasSlotToPark() {
+        return parkingSlotsAvailable > 0;
+    }
+
+    private boolean isCarNotParkedAlready(Vehicle vehicle) {
+        return !parkingSlots.contains(vehicle);
     }
 
     public Boolean unPark(Vehicle vehicle){

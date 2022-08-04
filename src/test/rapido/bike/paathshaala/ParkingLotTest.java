@@ -81,7 +81,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1);
         Owner owner = new Owner();
         owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot();
+        owner.subscribeToAParkingLot(0);
 
         boolean isParked = parkingLot.park(new Vehicle());
 
@@ -95,7 +95,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(2);
         Owner owner = new Owner();
         owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot();
+        owner.subscribeToAParkingLot(0);
 
         boolean isParked = parkingLot.park(new Vehicle());
 
@@ -134,7 +134,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(1);
         Owner owner = new Owner();
         owner.setParkingLot(parkingLot);
-        owner.subscribeToAParkingLot();
+        owner.subscribeToAParkingLot(0);
         Vehicle myCar = new Vehicle();
 
         boolean isParked = parkingLot.park(myCar);
@@ -146,5 +146,19 @@ public class ParkingLotTest {
         assertTrue(notifiedOwnerWhenLotIsFull);
         assertTrue(isUnParked);
         assertTrue(notifiedOwnerWhenLotIsBackAvailable);
+    }
+
+    @Test
+    void shouldReturnTrueAfterOwnerInstructAttendantToParkTheCar() {
+        ParkingLot parkingLot1 = new ParkingLot(2);
+        ParkingLot parkingLot2 = new ParkingLot(3);
+        Owner owner = new Owner();
+        owner.setParkingLot(parkingLot1);
+        owner.setParkingLot(parkingLot2);
+        Vehicle myCar = new Vehicle();
+
+        Boolean didAttendantParkTheCar = owner.instructAttendantToPark(myCar);
+
+        assertTrue(didAttendantParkTheCar);
     }
 }
