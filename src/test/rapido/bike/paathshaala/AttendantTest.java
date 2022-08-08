@@ -66,7 +66,7 @@ public class AttendantTest {
     }
 
     @Test
-    void shouldFollowEvenDistributionPatternWhileParkingCar() {
+    void attendantShouldFollowEvenDistributionPatternWhileParkingCar() {
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(new ParkingLot(3));
         parkingLots.add(new ParkingLot(3));
