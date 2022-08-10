@@ -1,18 +1,20 @@
 package bike.paathshaala;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Attendant {
-    public Boolean parkTheCar(Vehicle myCar, List<ParkingLot> parkingLot) {
-        for (ParkingLot lot : parkingLot) {
-            if(lot.park(myCar)) {
-                return true;
-            }
+    List<ParkingLot> parkingLots = new ArrayList<>();
+
+    public ParkingLot parkTheCar(Vehicle myCar) {
+        int indexOfLotToPark = getIndexOfLotToPark();
+        if(parkingLots.get(indexOfLotToPark).park(myCar)){
+            return parkingLots.get(indexOfLotToPark);
         }
-        return false;
+        return null;
     }
 
-    public Boolean unParkTheCar(Vehicle myCar, List<ParkingLot> parkingLots) {
+    public Boolean unParkTheCar(Vehicle myCar) {
         for (ParkingLot lot : parkingLots) {
             if(lot.unPark(myCar)){
                 return true;
@@ -21,20 +23,20 @@ public class Attendant {
         return false;
     }
 
-    public int parkTheCarToMaintainEvenDistributionAmongParkingLots(Vehicle myCar, List<ParkingLot> parkingLots){
-        int maxAvailableSlot = parkingLots.get(0).getAvailableSlot();
+    private int getIndexOfLotToPark() {
+        int maxAvailableSlot = 0;
         int indexOfLotToPark = 0;
-
         for (int index = 0; index < parkingLots.size(); index++) {
             int availableSlot = parkingLots.get(index).getAvailableSlot();
-            if(availableSlot >maxAvailableSlot){
+            if(availableSlot > maxAvailableSlot){
                 indexOfLotToPark = index;
                 maxAvailableSlot = availableSlot;
             }
         }
-        if(parkingLots.get(indexOfLotToPark).park(myCar)){
-            return indexOfLotToPark+1;
-        }
-        return -1;
+        return indexOfLotToPark;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 }

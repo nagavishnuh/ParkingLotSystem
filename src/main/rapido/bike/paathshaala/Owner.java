@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Owner implements Observer{
-    List<ParkingLot> parkingLot = new ArrayList<>();
+    List<ParkingLot> parkingLots = new ArrayList<>();
     Attendant parkingLotAttendant = new Attendant();
 
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot.add(parkingLot);
+    public void setParkingLots(ParkingLot parkingLots) {
+        this.parkingLots.add(parkingLots);
     }
 
     @Override
@@ -22,14 +22,11 @@ public class Owner implements Observer{
     }
 
     public void subscribeToAParkingLot(int num){
-        this.parkingLot.get(num).attachAnObserver(this);
+        this.parkingLots.get(num).attachAnObserver(this);
     }
 
-    public Boolean instructAttendantToPark(Vehicle myCar) {
-        return parkingLotAttendant.parkTheCar(myCar, parkingLot);
-    }
-
-    public Boolean instructAttendantToUnPark(Vehicle myCar) {
-        return parkingLotAttendant.unParkTheCar(myCar, parkingLot);
+    public void setAttendant(Attendant parkingAttendant) {
+        this.parkingLotAttendant = parkingAttendant;
+        this.parkingLotAttendant.setParkingLots(parkingLots);
     }
 }

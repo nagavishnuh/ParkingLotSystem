@@ -13,7 +13,7 @@ public class ObserverTest {
     void shouldNotifyOwnerWhenParkingLotIsFull() {
         ParkingLot parkingLot = new ParkingLot(1);
         Owner ownerMock = Mockito.spy(Owner.class);
-        ownerMock.setParkingLot(parkingLot);
+        ownerMock.setParkingLots(parkingLot);
         ownerMock.subscribeToAParkingLot(0);
 
         boolean isParked = parkingLot.park(new Vehicle());
@@ -26,7 +26,7 @@ public class ObserverTest {
     void shouldNotNotifyOwnerWhenParkingLotIsFree() {
         ParkingLot parkingLot = new ParkingLot(2);
         Owner ownerMock = Mockito.spy(Owner.class);
-        ownerMock.setParkingLot(parkingLot);
+        ownerMock.setParkingLots(parkingLot);
         ownerMock.subscribeToAParkingLot(0);
 
         boolean isParked = parkingLot.park(new Vehicle());
