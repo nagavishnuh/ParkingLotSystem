@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Attendant {
     List<ParkingLot> parkingLots = new ArrayList<>();
+    Strategy parkingStrategy = new EvenlyDistributedParkingStrategy();
 
     public ParkingLot parkTheCar(Vehicle myCar) {
-        int indexOfLotToPark = getIndexOfLotToPark();
-        if(parkingLots.get(indexOfLotToPark).park(myCar)){
-            return parkingLots.get(indexOfLotToPark);
+        ParkingLot lotToPark = parkingStrategy.getParkingLotNumberToPark(parkingLots);
+        if(lotToPark.park(myCar)){
+            return lotToPark;
         }
         return null;
     }
@@ -23,20 +24,11 @@ public class Attendant {
         return false;
     }
 
-    private int getIndexOfLotToPark() {
-        int maxAvailableSlot = 0;
-        int indexOfLotToPark = 0;
-        for (int index = 0; index < parkingLots.size(); index++) {
-            int availableSlot = parkingLots.get(index).getAvailableSlot();
-            if(availableSlot > maxAvailableSlot){
-                indexOfLotToPark = index;
-                maxAvailableSlot = availableSlot;
-            }
-        }
-        return indexOfLotToPark;
-    }
-
     public void setParkingLots(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
+    }
+
+    public void setParkingStrategy(Strategy parkingStrategy) {
+        this.parkingStrategy = parkingStrategy;
     }
 }

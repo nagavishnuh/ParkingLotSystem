@@ -72,22 +72,4 @@ public class AttendantTest {
 
         assertFalse(didAttendantUnParkTheCar);
     }
-
-//    @Test
-//    void attendantShouldFollowEvenDistributionPatternWhileParkingCar() {
-//        List<ParkingLot> parkingLots = new ArrayList<>();
-//        parkingLots.add(new ParkingLot(3));
-//        parkingLots.add(new ParkingLot(3));
-//        parkingLots.add(new ParkingLot(3));
-//        Attendant parkingLotAttendant = new Attendant();
-//        parkingLotAttendant.setParkingLots(parkingLots);
-//
-//        int isFirstCarParkedAtFirstLot = parkingLotAttendant.parkTheCarToMaintainEvenDistributionAmongParkingLots(new Vehicle());
-//        int isSecondCarParkedAtSecondLot = parkingLotAttendant.parkTheCarToMaintainEvenDistributionAmongParkingLots(new Vehicle());
-//        int isThirdCarParkedAtThirdLot = parkingLotAttendant.parkTheCarToMaintainEvenDistributionAmongParkingLots(new Vehicle());
-//
-//        assertEquals(1, isFirstCarParkedAtFirstLot);
-//        assertEquals(2, isSecondCarParkedAtSecondLot);
-//        assertEquals(3, isThirdCarParkedAtThirdLot);
-//    }
 }
