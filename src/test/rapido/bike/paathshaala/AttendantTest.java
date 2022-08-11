@@ -1,6 +1,7 @@
 package bike.paathshaala;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,8 +10,8 @@ public class AttendantTest {
     Vehicle myCar;
     Attendant parkingAttendant;
 
-    @BeforeAll
-    void beforeAll() {
+    @BeforeEach
+    void setUp() {
         owner = new Owner();
         myCar = new Vehicle();
         parkingAttendant = new Attendant();
