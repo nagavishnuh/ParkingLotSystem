@@ -1,22 +1,28 @@
 package bike.paathshaala;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AttendantTest {
+    Owner owner;
+    Vehicle myCar;
+    Attendant parkingAttendant;
+
+    @BeforeAll
+    void beforeAll() {
+        owner = new Owner();
+        myCar = new Vehicle();
+        parkingAttendant = new Attendant();
+    }
+
     @Test
     void attendantShouldParkTheCarWhenSlotsAreFree() {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(3);
-        Owner owner = new Owner();
         owner.setParkingLots(parkingLot1);
         owner.setParkingLots(parkingLot2);
-        Attendant parkingAttendant = new Attendant();
         owner.setAttendant(parkingAttendant);
-        Vehicle myCar = new Vehicle();
 
         ParkingLot lotNumberOfTheCarParked = parkingAttendant.parkTheCar(myCar);
 
@@ -27,12 +33,9 @@ public class AttendantTest {
     void attendantShouldNotParkTheCarWhenSlotsAreFull() {
         ParkingLot parkingLot1 = new ParkingLot(0);
         ParkingLot parkingLot2 = new ParkingLot(0);
-        Owner owner = new Owner();
         owner.setParkingLots(parkingLot1);
         owner.setParkingLots(parkingLot2);
-        Attendant parkingAttendant = new Attendant();
         owner.setAttendant(parkingAttendant);
-        Vehicle myCar = new Vehicle();
 
         ParkingLot lotNumberOfTheCarParked = parkingAttendant.parkTheCar(myCar);
 
@@ -43,11 +46,8 @@ public class AttendantTest {
     void attendantShouldUnParkTheCarWhenTheCarIsParked() {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(2);
-        Owner owner = new Owner();
-        Vehicle myCar = new Vehicle();
         owner.setParkingLots(parkingLot1);
         owner.setParkingLots(parkingLot2);
-        Attendant parkingAttendant = new Attendant();
         owner.setAttendant(parkingAttendant);
 
         ParkingLot lotNumberOfTheCarParked = parkingAttendant.parkTheCar(myCar);
@@ -61,11 +61,8 @@ public class AttendantTest {
     void attendantShouldNotUnParkTheCarIfCarWasNeverParked() {
         ParkingLot parkingLot1 = new ParkingLot(2);
         ParkingLot parkingLot2 = new ParkingLot(2);
-        Owner owner = new Owner();
-        Vehicle myCar = new Vehicle();
         owner.setParkingLots(parkingLot1);
         owner.setParkingLots(parkingLot2);
-        Attendant parkingAttendant = new Attendant();
         owner.setAttendant(parkingAttendant);
 
         boolean didAttendantUnParkTheCar = parkingAttendant.unParkTheCar(myCar);
